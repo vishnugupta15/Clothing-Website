@@ -14,8 +14,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
-                <li><a href="login.html">Login</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -32,5 +32,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Check if user is logged in (based on localStorage)
+        const currentUser = localStorage.getItem("currentUser");
+    
+        if (!currentUser) {
+            // User not logged in, redirect to login page
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>

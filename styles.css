@@ -17,6 +17,17 @@ header h1 {
     margin: 0;
 }
 
+header nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-greeting{
+    font-size: 15px ;
+    font-weight: bold;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -59,8 +70,8 @@ section#CTA{
 
 /* Login and Register Page Styles */
 section#login, section#register {
-    width: 100%;
-    max-width: 400px;
+    width: 95%;
+    max-width: 390px;
     margin: 50px auto;
     padding: 20px;
     background-color: white;
@@ -85,7 +96,7 @@ label {
 }
 
 input[type="email"], input[type="password"], input[type="text"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ddd;
@@ -210,15 +221,117 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
     background-color: #555;
 }
 
+/* Cart Page Css */
+
+#cart {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+#cart h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 1rem;
+}
+
+.cart-item p {
+    margin: 0;
+    font-weight: 500;
+    color: #444;
+}
+
+.cart-item button {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-item button:hover {
+    background-color: #e60000;
+}
+
+#total-price {
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 30px;
+    color: #222;
+}
+
+#cart button {
+    width: auto;
+    display: block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#cart button:hover {
+    background-color: #333;
+}
+
+
 /* Responsive Design for Products Page */
 @media (max-width: 768px) {
     #products {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-greeting {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
     #products {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item button {
+        margin-top: 10px;
+    }
+
+    #total-price {
+        text-align: left;
     }
 }

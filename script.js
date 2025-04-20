@@ -32,11 +32,20 @@ function removeFromCart(index) {
 updateCart();
 
 //product adding into localstorage
-
 const cart1 = JSON.parse(localStorage.getItem("cart")) || [];
 
 document.querySelectorAll(".add-to-cart").forEach(button => {
     button.addEventListener("click", (e) => {
+        // Check if user is logged in (based on localStorage)
+        const currentUser = localStorage.getItem("currentUser");
+
+        if (!currentUser) {
+            // User not logged in, redirect to login page
+            // alert("Please log in to access your cart.");
+            window.location.href = "login.html";
+            return;
+        }
+
         const parent = e.target.closest(".product-card");
         const name = parent.querySelector("h3").textContent;
         const price = parseFloat(e.target.dataset.price);
@@ -52,14 +61,104 @@ document.querySelectorAll(".add-to-cart").forEach(button => {
 document.getElementById('registerForm')?.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    let username = document.getElementById('username').value;
-    let email = document.getElementById('registerEmail').value;
-    let password = document.getElementById('registerPassword').value;
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('registerEmail').value.trim();
+    const password = document.getElementById('registerPassword').value.trim();
 
-    if (username && email && password) {
-        alert('Registration successful!');
-        // You can add the logic for saving the data here
-    } else {
+    // Basic Validation
+    if (!username || !email || !password) {
         alert('Please fill in all fields');
+        return;
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+
+    // Password validation (at least 6 characters)
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return;
+    }
+
+    // Store user data in localStorage
+    const userData = {
+        username,
+        email,
+        password
+    };
+
+    localStorage.setItem('user', JSON.stringify(userData));
+
+    alert('Registration successful!');
+    window.location.href = 'login.html'; // Optional: Redirect to login page
+});
+
+
+//  Login Form JavaScript (Validation + localStorage Verification)
+document.getElementById('loginForm')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    if (!email || !password) {
+        alert('Please enter both email and password');
+        return;
+    }
+
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (!storedUser) {
+        alert('No user found. Please register first.');
+        return;
+    }
+
+    if (storedUser.email === email && storedUser.password === password) {
+        alert(`Welcome, ${storedUser.username}! You are now logged in.`);
+        // Optional: redirect to home/products/dashboard
+        window.location.href = 'products.html';
+    } else {
+        alert('Invalid email or password');
+    }
+});
+
+//Navbar update for logged in user and Logout button
+window.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector("nav");
+    const navList = document.querySelector("nav ul");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user && user.username) {
+        // Remove "Login" link if present
+        const loginLink = navList.querySelector("a[href='login.html']");
+        if (loginLink) {
+            loginLink.parentElement.remove();
+        }
+
+        // Create list item for greeting
+        const welcomeItem = document.createElement("span");
+        welcomeItem.textContent = `Welcome, ${user.username}`;
+        welcomeItem.classList.add("nav-greeting");
+
+        // Create list item for logout button
+        const logoutItem = document.createElement("li");
+        const logoutButton = document.createElement("a");
+        logoutButton.textContent = "Logout";
+        logoutButton.style.cursor = "pointer";
+        logoutButton.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            alert("You have been logged out.");
+            location.reload(); // Reload page to reflect change
+        });
+
+        logoutItem.appendChild(logoutButton);
+
+        // Append greeting and logout button to navbar
+        navList.appendChild(logoutItem);
+        nav.appendChild(welcomeItem);
     }
 });
