@@ -26,6 +26,7 @@ header nav {
 .nav-greeting {
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 nav ul {
@@ -509,4 +510,50 @@ input[type="text"]:focus {
     #total-price {
         text-align: left;
     }
+}
+
+/* Account page Styling */
+#account {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fefefe;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#account p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    #account {
+        padding: 1rem;
+    }
+}
+
+/* order history Styling */
+#order-history {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.order-box {
+    background-color: #888;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #333;
+}
+
+.order-box ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.order-box p {
+    margin: 5px 0;
 }

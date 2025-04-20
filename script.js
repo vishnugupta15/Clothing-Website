@@ -140,9 +140,12 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         // Create list item for greeting
-        const welcomeItem = document.createElement("span");
+        const welcomeItem = document.createElement("a");
         welcomeItem.textContent = `Welcome, ${user.username}`;
         welcomeItem.classList.add("nav-greeting");
+        welcomeItem.addEventListener("click",()=>{
+            window.location.href = "account.html";
+        })
 
         // Create list item for logout button
         const logoutItem = document.createElement("li");
@@ -162,8 +165,6 @@ window.addEventListener("DOMContentLoaded", () => {
         nav.appendChild(welcomeItem);
     }
 });
-
-// Contact form email submission
 
 // Contact form email submission
 document.getElementById('contactForm')?.addEventListener('submit', function(event) {
@@ -196,4 +197,3 @@ document.getElementById('contactForm')?.addEventListener('submit', function(even
             alert("Oops! Something went wrong. Try again later.");
         });
 });
-
