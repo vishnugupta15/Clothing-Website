@@ -70,7 +70,7 @@ section#CTA{
 
 /* Login and Register Page Styles */
 section#login, section#register {
-    width: 95%;
+    width: 90%;
     max-width: 390px;
     margin: 50px auto;
     padding: 20px;
