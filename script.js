@@ -52,7 +52,7 @@ document.querySelectorAll(".add-to-cart").forEach(button => {
 
         cart1.push({ name, price });
         localStorage.setItem("cart", JSON.stringify(cart1));
-        alert(`${name} added to cart!`);
+        // alert(`${name} added to cart!`);
     });
 });
 
