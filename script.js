@@ -37,7 +37,7 @@ const cart1 = JSON.parse(localStorage.getItem("cart")) || [];
 document.querySelectorAll(".add-to-cart").forEach(button => {
     button.addEventListener("click", (e) => {
         // Check if user is logged in (based on localStorage)
-        const currentUser = localStorage.getItem("currentUser");
+        const currentUser = localStorage.getItem("user");
 
         if (!currentUser) {
             // User not logged in, redirect to login page
