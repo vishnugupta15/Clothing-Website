@@ -84,6 +84,15 @@ document.getElementById('registerForm')?.addEventListener('submit', (event) => {
         return;
     }
 
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Check if user already exists
+    const userExists = users.some(user => user.email === email);
+    if (userExists) {
+        alert("User already registered with this email.");
+        return;
+    }
+    
     // Store user data in localStorage
     const userData = {
         username,
@@ -91,7 +100,8 @@ document.getElementById('registerForm')?.addEventListener('submit', (event) => {
         password
     };
 
-    localStorage.setItem('user', JSON.stringify(userData));
+    users.push(userData);
+    localStorage.setItem('users', JSON.stringify(users));
 
     alert('Registration successful!');
     window.location.href = 'login.html'; // Optional: Redirect to login page
@@ -110,20 +120,18 @@ document.getElementById('loginForm')?.addEventListener('submit', (event) => {
         return;
     }
 
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const validUser = users.find(user => user.email === email && user.password === password);
 
-    if (!storedUser) {
-        alert('No user found. Please register first.');
+    if (!validUser) {
+        alert("Invalid email or password");
         return;
     }
 
-    if (storedUser.email === email && storedUser.password === password) {
-        alert(`Welcome, ${storedUser.username}! You are now logged in.`);
-        // Optional: redirect to home/products/dashboard
-        window.location.href = 'products.html';
-    } else {
-        alert('Invalid email or password');
-    }
+    // Save logged-in user
+    localStorage.setItem("user", JSON.stringify(validUser));
+    alert("Login successful!");
+    window.location.href = "index.html";
 });
 
 //Navbar update for logged in user and Logout button
