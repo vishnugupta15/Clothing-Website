@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <body>
     <header>
         <h1>Clothing Store</h1>
@@ -20,14 +22,24 @@
         </nav>
     </header>
 
-    <section id="CTA">
-        <h2>Welcome to Our Clothing Store</h2>
-        <p>Browse through our collection of stylish clothes for all occasions!</p>
-        <a href="products.html" class="btn">Shop Now</a>
+    <section id="cta-section">
+        <div class="cta-container">
+            <div class="cta-text">
+                <h2>Step Into Style</h2>
+                <p>Discover the latest trends and timeless classics. Elevate your wardrobe today with our curated
+                    collection of fashion essentials.</p>
+                <a href="products.html" class="cta-btn">Shop the Collection</a>
+            </div>
+            <div class="cta-image">
+                <img src="images/fashion-cta.jpg" alt="Fashion Banner">
+            </div>
+        </div>
     </section>
 
-    <section id="products">
 
+
+    <h2>Our Products</h2>
+    <section id="products">
         <div class="product-card">
             <img src="images/product1.jpg" alt="Product 1">
             <h3>Red T-shirt</h3>
@@ -60,4 +72,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
